@@ -1,0 +1,5 @@
+red_experts_shopping_cart:
+    resource: "@RedExpertsShoppingCartBundle/Controller/"
+    type:     annotation
+    prefix:   /
+

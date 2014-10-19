@@ -1,0 +1,15 @@
+<div id="shopping-cart">
+  <h4>My shopping cart <a href="{{ path('clear_cart') }}">empty the cart</a></h4>
+  <ul>
+    {% for element in shoppingCart %}
+    <li>{{ element.name }}</li>
+    {% else %}
+      <li>no products</li>
+    {% endfor %}
+  </ul>
+</div>
+
+<div id="product-form">
+  <h4>Available products:</h4>
+  {{ form(form) }}
+</div>
