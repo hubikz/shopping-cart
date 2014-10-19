@@ -24,7 +24,7 @@ class ProductManagerTest extends \PHPUnit_Framework_TestCase
             ->getMock();
         $emMock->expects($this->once())
             ->method('getRepository')
-            ->with($this->equalTo('RedExpertsShoppingCartBundle:Products'))
+            ->with($this->equalTo('RedExpertsShoppingCartBundle:Product'))
             ->will($this->returnValue($productRepositoryMock));
 
         $productManager = new ProductManager($emMock);
