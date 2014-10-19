@@ -32,29 +32,15 @@ class DefaultController extends Controller
 
         $form->handleRequest($request);
 
-        $session = $request->getSession();
-        $shoppingCart = $session->get('basket', []);
-
+        $shoppingCartManager = $this->get('red_experts_shopping_cart.shopping_cart_manager');
         if ($form->isValid()) {
-            /** @var OrderLog $orderLog */
-            $orderLog = $form->getData();
-            $orderLog->setSessionId($request->getSession()->getId());
-            $orderLog->setCreatedAt(new \DateTime());
-
-            //save in session here
-            $shoppingCart[] = $orderLog->getProduct();
-            $session->set('basket', $shoppingCart);
-
-            $em = $this->get('doctrine.orm.default_entity_manager');
-            $em->persist($orderLog);
-            $em->flush();
-
+            $shoppingCartManager->add($form->getData());
             return $this->redirect($this->generateUrl("products_list"));
         }
 
         return [
             'products' => $products,
-            'shoppingCart' => $shoppingCart,
+            'shoppingCart' => $shoppingCartManager->get(),
             'form' => $form->createView(),
         ];
     }

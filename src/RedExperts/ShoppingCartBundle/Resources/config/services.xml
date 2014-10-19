@@ -1,12 +1,20 @@
 <?xml version="1.0" ?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <services>
-        <service id="red_experts_shopping_cart.product_manager" class="RedExperts\ShoppingCartBundle\Product\ProductManager">
-            <argument type="service" id="doctrine.orm.default_entity_manager" />
-        </service>
-    </services>
+  <services>
+    <service id="red_experts_shopping_cart.product_manager"
+             class="RedExperts\ShoppingCartBundle\Product\ProductManager">
+      <argument type="service" id="doctrine.orm.default_entity_manager"/>
+    </service>
+
+    <service id="red_experts_shopping_cart.shopping_cart_manager"
+             class="RedExperts\ShoppingCartBundle\ShoppingCart\ShoppingCartManager">
+      <argument type="service" id="doctrine.orm.default_entity_manager"/>
+      <argument type="service" id="session"/>
+    </service>
+
+  </services>
 </container>
